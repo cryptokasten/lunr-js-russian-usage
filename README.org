@@ -1,0 +1,78 @@
+#+TITLE: Lunr.js: Russian language search
+#+PROPERTY: header-args:js :session *shell lunr-js-russian-usage js* :results silent raw
+#+OPTIONS: ^:nil
+
+** System environment
+
+- Node 14.8.0
+
+Node modules:
+
+- lunr@2.3.8
+
+- lunr-languages@1.4.0
+
+** Russian language search
+*** Imports
+
+#+BEGIN_SRC js
+var lunr = require("lunr")
+require("lunr-languages/lunr.stemmer.support")(lunr)
+require("lunr-languages/lunr.ru")(lunr)
+#+END_SRC
+
+*** Documents set
+
+#+BEGIN_SRC js
+var documents = [
+    {"id": 1, "text": "Без царя в голове."},
+    {"id": 2, "text": "Что в лоб, что по лбу."},
+    {"id": 3, "text": "Авось кривая вывезет."},
+    {"id": 4, "text": "Хорошо там, где нас нет."},
+    {"id": 5, "text": "Мал золотник — да дорог."},
+    {"id": 6, "text": "Яблоко от яблоньки недалеко падает."},
+    {"id": 7, "text": "Укатали сивку крутые горки."},
+    {"id": 8, "text": "Мы люди не гордые: нету хлеба, давай пироги."},
+    {"id": 9, "text": "Бумага терпит, перо пишет."},
+    {"id": 10, "text": "Волос долог, да ум короток."},
+    {"id": 11, "text": "Гусь свинье не товарищ."},
+    {"id": 12, "text": "Тише едешь — дальше будешь."},
+    {"id": 13, "text": "Ищи жену не в хороводе, а в огороде."},
+    {"id": 14, "text": "Такое сено, что сам бы ел, да деньги нужны."},
+    {"id": 15, "text": "Кому война, а кому мать родна."},
+    {"id": 16, "text": "Сытое брюхо к учению глухо."},
+    {"id": 17, "text": "Как жили русские люди"},
+    {"id": 18, "text": "Сосед спать не даёт: хорошо живет."},
+    {"id": 19, "text": "На Бога надейся, а сам не плошай."},
+    {"id": 20, "text": "Смелому и море по колено."},
+    {"id": 21, "text": "На каждый роток не накинешь платок."}
+]
+#+END_SRC
+
+*** Creating index
+
+#+BEGIN_SRC js
+var idx = lunr(function () {
+  this.use(lunr.ru)
+  this.ref('id')
+  this.field('text')
+
+  documents.forEach(function (doc) {
+    this.add(doc)
+  }, this)
+})
+#+END_SRC
+
+*** Search
+
+#+BEGIN_SRC js
+idx.search("жена")
+#+END_SRC
+
+** References
+
+1. https://github.com/cryptokasten/lunr-js-in-docker
+
+2. https://github.com/olivernn/lunr.js/
+
+3. https://lunrjs.com/guides/language_support.html
