@@ -1,4 +1,5 @@
 #+TITLE: Lunr.js: Russian language search
+#+TAGS: cryptokasten, lunr, lunrjs, fulltext-search
 #+PROPERTY: header-args:js :session *shell lunr-js-russian-usage js* :results silent raw
 #+OPTIONS: ^:nil
 
