@@ -54,13 +54,13 @@ var documents = [
 
 #+BEGIN_SRC js
 var idx = lunr(function () {
-  this.use(lunr.ru)
-  this.ref('id')
-  this.field('text')
+    this.use(lunr.ru)
+    this.ref('id')
+    this.field('text')
 
-  documents.forEach(function (doc) {
-    this.add(doc)
-  }, this)
+    documents.forEach(function (doc) {
+	this.add(doc)
+    }, this)
 })
 #+END_SRC
 
